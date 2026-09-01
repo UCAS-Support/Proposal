@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تقرير مشروع إدارة الدعم الفني للطلبة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== إعادة ضبط ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Tahoma', 'Arial', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            padding: 30px 20px;
+            line-height: 1.8;
+        }
+
+        /* ===== غلاف التقرير ===== */
+        .report {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.08);
+            padding: 45px 55px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .report::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #1e293b, #10b981, #1e293b);
+        }
+
+        /* ===== شريط التنقل العلوي ===== */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(30, 41, 59, 0.92);
+            backdrop-filter: blur(8px);
+            border-radius: 14px;
+            padding: 10px 20px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .top-nav .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+        }
+
+        .top-nav .nav-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 30px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .top-nav .nav-links a:hover {
+            background: #10b981;
+            color: #fff;
+        }
+
+        .print-btn {
+            background: #10b981;
+            color: #fff;
+            border: none;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .print-btn:hover {
+            background: #059669;
+        }
+
+        /* ===== الرأس المصغر ===== */
+        .header {
+            display: flex;
+            justify-content: flex-start;
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .date-badge {
+            font-size: 12px;
+            font-weight: 600;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 4px 12px;
+            border-radius: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        /* ===== العنوان ===== */
+        .title-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .title-section h1 {
+            font-size: 32px;
+            font-weight: 900;
+            color: #0f172a;
+            line-height: 1.3;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .title-section h1 span {
+            background: linear-gradient(to left, #10b981, #0f766e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .title-section .sub {
+            font-size: 17px;
+            color: #64748b;
+            font-weight: 400;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .title-section .beneficiary {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #0f766e;
+            background: rgba(16, 185, 129, 0.10);
+            padding: 2px 18px;
+            border-radius: 30px;
+            border: 1px solid rgba(16, 185, 129, 0.20);
+        }
+
+        /* ===== الصورة ===== */
+        .report-image {
+            text-align: center;
+            margin: 20px 0 30px;
+        }
+
+        .report-image img {
+            max-width: 100%;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .img-caption {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* ===== بطاقة المعلومات ===== */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px 20px;
+            background: rgba(16, 185, 129, 0.06);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .info-item .tag {
+            font-size: 11px;
+            font-weight: 700;
+            color: #047857;
+            letter-spacing: 0.5px;
+        }
+
+        .info-item .val {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0a0f1a;
+            line-height: 1.4;
+        }
+
+        /* ===== عناوين ===== */
+        h2 {
+            font-size: 23px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-top: 45px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            scroll-margin-top: 80px;
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 28px;
+            background: #10b981;
+            border-radius: 8px;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-top: 28px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 1.4em;
+            color: #334155;
+        }
+
+        /* ===== مقاييس ===== */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin: 25px 0 35px;
+        }
+
+        .metric-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 22px 12px;
+            text-align: center;
+            border: 1px solid #eef2f6;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            transition: all 0.2s;
+        }
+
+        @media (hover: hover) {
+            .metric-box:hover {
+                transform: translateY(-4px);
+                border-color: #10b981;
+                box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15);
+            }
+        }
+
+        .metric-box .num {
+            font-size: 30px;
+            font-weight: 900;
+            color: #0f172a;
+            line-height: 1.2;
+        }
+
+        .metric-box:nth-child(1) .num {
+            color: #1e293b;
+        }
+
+        .metric-box:nth-child(2) .num {
+            color: #10b981;
+        }
+
+        .metric-box:nth-child(3) .num {
+            color: #0f766e;
+        }
+
+        .metric-box:nth-child(4) .num {
+            color: #10b981;
+        }
+
+        .metric-box .label {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* ===== قوائم ===== */
+        ul,
+        ol {
+            padding-right: 26px;
+            margin-bottom: 1.4em;
+            color: #334155;
+        }
+
+        li {
+            margin-bottom: 0.6em;
+        }
+
+        /* ===== قائمة مميزات Chatwoot ===== */
+        .features-list {
+            list-style: none;
+            padding-right: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 20px;
+            margin: 15px 0 25px;
+        }
+
+        .features-list li {
+            background: rgba(16, 185, 129, 0.06);
+            padding: 10px 18px;
+            border-radius: 12px;
+            border-right: 4px solid #10b981;
+            font-size: 14px;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: 900;
+            font-size: 16px;
+        }
+
+        /* ===== جدول ===== */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 25px 0 30px;
+            border-radius: 18px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            min-width: 680px;
+        }
+
+        table th {
+            background: #1e293b;
+            color: #fff;
+            font-weight: 700;
+            text-align: right;
+            padding: 14px 18px;
+            font-size: 13px;
+        }
+
+        table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid #eef2f6;
+            vertical-align: top;
+            color: #1e293b;
+        }
+
+        table tr:last-child td {
+            border-bottom: none;
+        }
+
+        table tr:nth-child(even) {
+            background: rgba(16, 185, 129, 0.04);
+        }
+
+        @media (hover: hover) {
+            table tr:hover {
+                background: rgba(16, 185, 129, 0.10);
+            }
+        }
+
+        /* ===== المخطط الزمني المتعرج ===== */
+        .journey-map {
+            background: rgba(16, 185, 129, 0.04);
+            border-radius: 24px;
+            padding: 35px 25px 25px;
+            margin: 30px 0 35px;
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+        }
+
+        .journey-map .intro {
+            text-align: center;
+            font-weight: 700;
+            color: #0f766e;
+            font-size: 16px;
+            margin: 0 auto 35px auto;
+            padding: 8px 30px;
+            border-radius: 40px;
+            width: fit-content;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            background: rgba(16, 185, 129, 0.1);
+            display: block;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 25px 0 15px;
+            max-width: 100%;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #10b981, #1e293b 50%, #10b981);
+            transform: translateX(50%);
+            border-radius: 4px;
+            z-index: 0;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            width: 50%;
+            padding: 8px 0 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-item.left {
+            justify-content: flex-end;
+            padding-left: 40px;
+            margin-right: 0;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .timeline-item.right {
+            justify-content: flex-start;
+            padding-right: 40px;
+            margin-right: auto;
+            margin-left: 0;
+            text-align: left;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #1e293b, #10b981);
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 20px;
+            color: #ffffff;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.15), 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-item.left .timeline-dot {
+            right: -25px;
+        }
+
+        .timeline-item.right .timeline-dot {
+            left: -25px;
+        }
+
+        @media (hover: hover) {
+            .timeline-dot:hover {
+                transform: translateY(-50%) scale(1.15);
+                background: #10b981;
+                color: #ffffff;
+                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0.25), 0 8px 25px rgba(16, 185, 129, 0.3);
+                border-color: #10b981;
+            }
+        }
+
+        .timeline-content {
+            background: #ffffff;
+            padding: 18px 25px;
+            border-radius: 16px;
+            border: 1px solid #eef2f6;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02);
+            width: 100%;
+            max-width: 400px;
+            transition: all 0.3s ease;
+            position: relative;
+            backdrop-filter: blur(2px);
+            background: linear-gradient(135deg, #ffffff, #fafffe);
+        }
+
+        .timeline-item.left .timeline-content {
+            border-left: 5px solid #10b981;
+            border-radius: 16px 4px 16px 16px;
+        }
+
+        .timeline-item.right .timeline-content {
+            border-right: 5px solid #10b981;
+            border-radius: 4px 16px 16px 16px;
+        }
+
+        @media (hover: hover) {
+            .timeline-content:hover {
+                border-color: #10b981;
+                box-shadow: 0 12px 35px rgba(16, 185, 129, 0.12);
+                transform: translateY(-4px);
+            }
+        }
+
+        .timeline-content .stitle {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 15px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timeline-content .stitle::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .timeline-content .sdesc {
+            font-size: 13.5px;
+            color: #475569;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .timeline-arrow {
+            text-align: center;
+            color: #94a3b8;
+            padding: 4px 0 8px;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            clear: both;
+            transition: all 0.3s;
+            line-height: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .timeline-arrow::before {
+            content: '';
+            width: 2px;
+            height: 12px;
+            background: #cbd5e1;
+            display: block;
+        }
+
+        .timeline-arrow span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: #f1f5f9;
+            border-radius: 50%;
+            font-size: 14px;
+            color: #10b981;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        @media (hover: hover) {
+            .timeline-arrow:hover span {
+                background: #10b981;
+                color: #ffffff;
+                border-color: #10b981;
+                transform: scale(1.1);
+            }
+        }
+
+        /* ===== ملاحظة الرقابة والإشراف ===== */
+        .supervision-note-outside {
+            background: rgba(59, 130, 246, 0.06);
+            border-right: 6px solid #3b82f6;
+            border-radius: 16px;
+            padding: 24px 30px;
+            margin: 30px 0 10px 0;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.05);
+            transition: all 0.3s;
+        }
+
+        @media (hover: hover) {
+            .supervision-note-outside:hover {
+                background: rgba(59, 130, 246, 0.10);
+                box-shadow: 0 8px 25px rgba(59, 130, 246, 0.10);
+            }
+        }
+
+        .supervision-note-outside .head {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: #1e3a8a;
+            font-weight: 800;
+            font-size: 15px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .supervision-note-outside .badge {
+            background: #3b82f6;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 18px;
+            border-radius: 30px;
+            letter-spacing: 0.3px;
+        }
+
+        .supervision-note-outside p {
+            color: #1e3a8a;
+            margin: 0;
+            font-size: 14.5px;
+            line-height: 1.9;
+        }
+
+        /* ===== تنبيه ===== */
+        .note-block {
+            background: rgba(16, 185, 129, 0.06);
+            border-right: 6px solid #10b981;
+            padding: 16px 22px;
+            border-radius: 0 12px 12px 0;
+            margin: 28px 0;
+            font-size: 14px;
+            color: #064e3b;
+            line-height: 1.8;
+        }
+
+        /* ===== مخطط Gantt المُحسَّن ===== */
+        .gantt-wrapper {
+            background: rgba(16, 185, 129, 0.04);
+            border-radius: 20px;
+            padding: 25px 20px 20px;
+            margin: 20px 0 30px;
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            overflow-x: auto;
+        }
+
+        .gantt-grid {
+            display: grid;
+            grid-template-columns: 140px repeat(10, 1fr);
+            gap: 8px 4px;
+            min-width: 660px;
+        }
+
+        .gantt-header-day {
+            font-size: 13px;
+            font-weight: 700;
+            color: #0f172a;
+            text-align: center;
+            padding: 6px 2px;
+            background: #f1f5f9;
+            border-radius: 6px;
+        }
+
+        .gantt-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1e293b;
+            padding: 8px 6px 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .gantt-label .phase-num {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #1e293b;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 13px;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        .gantt-cell {
+            min-height: 44px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+            padding: 4px 2px;
+            text-align: center;
+            line-height: 1.3;
+            grid-column: span 1;
+        }
+
+        /* ألوان المراحل */
+        .gantt-cell.phase1 {
+            background: linear-gradient(135deg, #0f766e, #10b981);
+        }
+
+        .gantt-cell.phase2 {
+            background: linear-gradient(135deg, #1e293b, #475569);
+        }
+
+        .gantt-cell.phase3 {
+            background: linear-gradient(135deg, #0f766e, #10b981);
+        }
+
+        /* خلايا فارغة (بدون مهمة) */
+        .gantt-cell.empty {
+            background: transparent;
+            grid-column: span 1;
+        }
+
+        @media (hover: hover) {
+            .gantt-cell:hover {
+                transform: scaleY(1.08);
+                box-shadow: 0 6px 18px rgba(16, 185, 129, 0.25);
+            }
+        }
+
+        .gantt-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 28px;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px dashed #d1d5db;
+            font-size: 13px;
+            color: #334155;
+        }
+
+        .gantt-legend span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .gantt-legend .swatch {
+            display: inline-block;
+            width: 20px;
+            height: 14px;
+            border-radius: 4px;
+        }
+
+        .gantt-legend .swatch.green {
+            background: linear-gradient(135deg, #0f766e, #10b981);
+        }
+
+        .gantt-legend .swatch.gray {
+            background: linear-gradient(135deg, #1e293b, #475569);
+        }
+
+        /* ===== قسم الموافقات ===== */
+        .approval-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px dashed #e2e8f0;
+        }
+
+        .approval-section h3 {
+            text-align: center;
+            color: #0f172a;
+            margin-bottom: 25px;
+            font-size: 20px;
+        }
+
+        .approval-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .approval-box {
+            text-align: center;
+            padding: 25px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background: #f8fafc;
+            transition: all 0.2s;
+        }
+
+        @media (hover: hover) {
+            .approval-box:hover {
+                border-color: #10b981;
+                box-shadow: 0 4px 12px rgba(16, 185, 129, 0.10);
+            }
+        }
+
+        .approval-box .role {
+            display: block;
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .approval-box .name {
+            display: block;
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 20px;
+        }
+
+        .approval-box .signature-line {
+            display: block;
+            font-size: 14px;
+            color: #334155;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        /* ===== تذييل ===== */
+        .footer {
+            margin-top: 40px;
+            padding-top: 22px;
+            border-top: 2px solid #e2e8f0;
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+            line-height: 2;
+        }
+
+        /* ===== صورة إضافية ===== */
+        .feature-image {
+            text-align: center;
+            margin: 25px 0 35px;
+        }
+
+        .feature-image img {
+            max-width: 100%;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        /* ===== استجابة ===== */
+        @media (max-width: 850px) {
+            .timeline::before {
+                right: 20px;
+                transform: translateX(0);
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding: 12px 0 18px 0 !important;
+                margin: 0 !important;
+                justify-content: flex-start !important;
+                text-align: right !important;
+                padding-right: 60px !important;
+            }
+
+            .timeline-item .timeline-dot {
+                right: 0 !important;
+                left: auto !important;
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .timeline-item .timeline-content {
+                border-radius: 4px 16px 16px 16px !important;
+                border-right: 5px solid #10b981 !important;
+                border-left: 1px solid #eef2f6 !important;
+                max-width: 100%;
+                background: #ffffff;
+            }
+
+            .timeline-arrow {
+                padding-right: 60px;
+                text-align: right;
+                align-items: flex-start;
+            }
+
+            .timeline-arrow::before {
+                display: none;
+            }
+
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .approval-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+
+            .top-nav .nav-links {
+                gap: 4px 8px;
+            }
+
+            .top-nav .nav-links a {
+                font-size: 11px;
+                padding: 2px 8px;
+            }
+
+            .print-btn {
+                font-size: 11px;
+                padding: 4px 12px;
+            }
+
+            .top-nav {
+                padding: 8px 12px;
+            }
+
+            .gantt-grid {
+                grid-template-columns: 100px repeat(10, 1fr);
+                min-width: 560px;
+                gap: 6px 3px;
+            }
+
+            .gantt-label {
+                font-size: 12px;
+                padding: 4px 4px 4px 8px;
+            }
+
+            .gantt-cell {
+                font-size: 10px;
+                min-height: 36px;
+            }
+
+            .gantt-header-day {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .report {
+                padding: 25px 20px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                padding: 16px;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .title-section h1 {
+                font-size: 24px;
+            }
+
+            .journey-map {
+                padding: 20px 15px;
+            }
+
+            .top-nav {
+                flex-direction: column;
+                gap: 8px;
+                align-items: stretch;
+            }
+
+            .top-nav .nav-links {
+                justify-content: center;
+            }
+
+            .print-btn {
+                align-self: center;
+            }
+
+            .gantt-grid {
+                grid-template-columns: 80px repeat(10, 1fr);
+                min-width: 480px;
+                gap: 4px 2px;
+            }
+
+            .gantt-label {
+                font-size: 11px;
+                padding: 2px 2px 2px 6px;
+                white-space: normal;
+                word-break: break-word;
+            }
+
+            .gantt-label .phase-num {
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                font-size: 11px;
+            }
+
+            .gantt-cell {
+                font-size: 9px;
+                min-height: 30px;
+                padding: 2px 1px;
+            }
+
+            .gantt-header-day {
+                font-size: 10px;
+                padding: 4px 1px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gantt-grid {
+                grid-template-columns: 70px repeat(10, 1fr);
+                min-width: 400px;
+                gap: 3px 1px;
+            }
+
+            .gantt-label {
+                font-size: 10px;
+                padding: 2px 2px;
+            }
+
+            .gantt-cell {
+                font-size: 8px;
+                min-height: 26px;
+                border-radius: 4px;
+            }
+
+            .gantt-header-day {
+                font-size: 9px;
+                padding: 2px 1px;
+            }
+
+            .gantt-legend {
+                font-size: 11px;
+                gap: 8px 14px;
+            }
+        }
+
+        /* ===== طباعة ===== */
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+            }
+
+            .report {
+                box-shadow: none;
+                border: 1px solid #e2e8f0;
+                border-radius: 0;
+                padding: 25px;
+                max-width: 100%;
+            }
+
+            .report::before {
+                display: none;
+            }
+
+            .top-nav {
+                display: none !important;
+            }
+
+            .print-btn {
+                display: none !important;
+            }
+
+            .metric-box,
+            .timeline-item,
+            .timeline-content,
+            .supervision-note-outside,
+            table tr,
+            .approval-box,
+            .gantt-cell {
+                page-break-inside: avoid;
+            }
+
+            .metric-box:hover,
+            .timeline-content:hover,
+            .approval-box:hover,
+            .gantt-cell:hover {
+                transform: none !important;
+                box-shadow: none !important;
+                border-color: #e2e8f0 !important;
+            }
+
+            table tr:hover {
+                background: inherit;
+            }
+
+            .timeline-dot {
+                box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+            }
+
+            .gantt-wrapper {
+                border: 1px solid #d1d5db;
+                background: #f9fafb;
+            }
+
+            .gantt-cell.phase1,
+            .gantt-cell.phase2,
+            .gantt-cell.phase3 {
+                background: #10b981 !important;
+                color: #fff !important;
+                text-shadow: none !important;
+            }
+
+            .gantt-cell.phase2 {
+                background: #475569 !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="report">
+
+        <!-- ===== شريط التنقل العلوي ===== -->
+        <nav class="top-nav">
+            <div class="nav-links">
+                <a href="#summary">الملخص</a>
+                <a href="#structure">البنية</a>
+                <a href="#comparison">المقارنة</a>
+                <a href="#journey">الرحلة</a>
+                <a href="#plan">الخطة</a>
+                <a href="#cost">التكاليف</a>
+                <a href="#governance">الحوكمة</a>
+            </div>
+            <button class="print-btn" onclick="window.print()">🖨️ طباعة</button>
+        </nav>
+
+        <!-- ===== الرأس المصغر ===== -->
+        <div class="header">
+            <div class="date-badge">الإصدار: 1.0 &nbsp;|&nbsp; تاريخ الإصدار: 31 أغسطس 2026</div>
+        </div>
+
+        <!-- ===== العنوان ===== -->
+        <div class="title-section">
+            <h1>تقرير فني (مقترح)<br /><span>مشروع إدارة الدعم الفني للطلبة الملتحقين</span></h1>
+            <p class="sub">الحل المقترح لإدارة وتوجيه استفسارات الطلبة مركزياً باستخدام نظام Chatwoot</p>
+            <span class="beneficiary">📌 مقدّم إلى إدارة الكلية</span>
+        </div>
+
+        <!-- ===== الصورة الرئيسية ===== -->
+        <div class="report-image">
+            <img src="chatwoot.png" alt="رسم توضيحي لنظام إدارة الدعم الفني Chatwoot" loading="lazy" />
+            <p class="img-caption">الشكل ١: واجهة نظام Chatwoot – لوحة التحكم الموحدة لإدارة تذاكر الطلبة</p>
+        </div>
+
+        <!-- ===== بطاقة المعلومات ===== -->
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="tag">إعداد</span>
+                <span class="val">م. محمود الشيخ خليل</span>
+            </div>
+            <div class="info-item">
+                <span class="tag">موجه إلى</span>
+                <span class="val">م. عبد الله الحداد</span>
+            </div>
+            <div class="info-item">
+                <span class="tag">الحل المقترح</span>
+                <span class="val">Chatwoot (مفتوح المصدر - مقترح)</span>
+            </div>
+            <div class="info-item">
+                <span class="tag">حالة المشروع</span>
+                <span class="val">مقترح للتنفيذ خلال 10 أيام</span>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 1. الملخص -->
+        <h2 id="summary">الملخص التنفيذي والسياق العام</h2>
+        <p>
+            استجابةً للاجتماعات والاتصالات الهاتفية المكثفة لبحث الحلول العاجلة لمعالجة الدخول الهائل لرسائل واستفسارات
+            الطلبة عبر القنوات الرقمية، يهدف هذا المشروع إلى وضع حد نهائي لمشاكل تأخر الردود وتشتت القضايا بين الأقسام.
+            يرتكز الحل المقترح على تطبيق نظام <strong>Chatwoot CRM</strong> مفتوح المصدر كمنصة مركزية مدمجة بالكامل مع
+            واجهة الواتساب الرسمية، مما يوفر بيئة رقابة صارمة للإدارة تضمن تتبع ومعالجة كافة القضايا العالقة بشكل فوري
+            دون تشتيت الموظفين عبر حساباتهم الشخصية.
+        </p>
+
+        <!-- ===== المقاييس ===== -->
+        <div class="metrics-grid">
+            <div class="metric-box">
+                <div class="num">10 أيام</div>
+                <div class="label">مدة التنفيذ والإطلاق</div>
+            </div>
+            <div class="metric-box">
+                <div class="num">10 أقسام</div>
+                <div class="label">أقسام وعمادات معزولة (تقريبي)</div>
+            </div>
+            <div class="metric-box">
+                <div class="num">100%</div>
+                <div class="label">توجيه بشري مباشر</div>
+            </div>
+            <div class="metric-box">
+                <div class="num">0%</div>
+                <div class="label">إجابات تلقائية (ستاتيك)</div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 2. البنية الوظيفية -->
+        <h2 id="structure">البنية الوظيفية الأساسية لنظام CRM</h2>
+        <p>
+            تم الاتفاق على تركيز الجهد في الإصدار الأول من النظام لتشغيل <strong>خمس طبقات وظيفية رئيسية</strong> تضمن
+            سرعة ومرونة إطلاق النظام وبناءه بشكل متدرج:
+        </p>
+        <ul>
+            <li><strong>أولاً: شجرة القرار والتصنيف الأولي (Decision Tree Bot):</strong> يرسل الطالب رسالته عبر
+                الواتساب، ليقوم البوت بطلب الرقم الجامعي لتوثيق الهوية وحفظ السجلات، ثم يعرض خيارات تصنيفية واضحة ومحددة
+                للمشكلة.</li>
+            <li><strong>ثانياً: التوجيه المباشر بدون إجابات ستاتيك (Zero Static Answers):</strong> تيسيراً للإطلاق
+                السريع وضمان معالجة الحالات بدقة، لا يحتوي البوت على أي حلول تلقائية ثابتة في هذه المرحلة. يتم توجيه
+                رسائل الطالب مباشرة كـ Ticket حية للموظفين ليتعاملوا معها بشرياً وباحترافية كاملة.</li>
+            <li><strong>ثالثاً: التخصيص وتوجيه المهام (Smart Assignment):</strong> يدعم النظام توزيع المحادثات إما
+                تلقائياً (Auto) لموظف محدد مسبقاً، أو يدوياً عبر وضعها في صندوق مشترك (Shared Pool) خاص بالقسم يسحب منه
+                الموظفون وفقاً للأقدمية.</li>
+            <li><strong>رابعاً: إعادة التحويل المرن وتمرير التذاكر (Flexible Re-routing):</strong> في حال أخطأ الطالب في
+                التصنيف، يستطيع الموظف بضغطة زر تحويل التذكرة بكافة مرفقاتها وملاحظاتها للإدارة المعنية دون تعذيب الطالب
+                بإعادة الشرح.</li>
+            <li><strong>خامساً: نظام الرقابة والمتابعة الإدارية (Supervisor Dashboard):</strong> لوحة تحكم إدارية عليا
+                تمنح المشرفين (العمداء ورؤساء الأقسام) رؤية كاملة لمسار الرسائل ونسبة الإنجاز لتفادي بقاء أي قضية عالقة.
+            </li>
+        </ul>
+
+        <!-- ============================================================ -->
+        <!-- 3. مقارنة الخيارات -->
+        <h2 id="comparison">مقارنة الخيارات والحلول التقنية المطروحة</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:16%;">الخيار التقني</th>
+                        <th style="width:32%;">آلية العمل والخصائص</th>
+                        <th style="width:18%;">الجهد والتكلفة</th>
+                        <th style="width:18%;">التقييم الإداري</th>
+                        <th style="width:16%;">القابلية للتوسع والمرونة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>الحل السريع (FAQ Bot)</strong></td>
+                        <td>بناء ردود تلقائية ثابتة وتوجيه الحالات الخاصة يدوياً لأرقام الموظفين على الواتس الموزعة
+                            عليهم مسبقاً.</td>
+                        <td>منخفض جداً، زمن التنفيذ: 1 - 7 أيام.</td>
+                        <td><strong>غير ملائم:</strong> يفتقر لواجهة موحدة، ويبقى الضغط مشتتاً على حسابات الموظفين
+                            الشخصية دون رقابة.</td>
+                        <td style="color:#b91c1c; font-weight:600;">ضعيفة (لا تدعم التوسع بسهولة)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>الحل الذكي (Smart API Bot)</strong></td>
+                        <td>بوت ذكي يستعلم عبر APIs الكلية لتقديم بيانات مخصصة للطالب وتوجيه القضايا الخاصة بشرياً.</td>
+                        <td>متوسط، زمن التنفيذ: 7 - 30 يوماً.</td>
+                        <td><strong>ممتاز للأتمتة:</strong> يقلل الرسائل الروتينية، لكنه يفتقر للوحة تحكم CRM لمتابعة
+                            الموظفين.</td>
+                        <td style="color:#b45309; font-weight:600;">متوسطة (تحتاج لتطوير مستمر)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>الحل الموصى به (Chatwoot)</strong></td>
+                        <td>تجميع كافة القنوات في لوحة تحكم موحدة مع تفعيل عزل الصلاحيات.</td>
+                        <td><strong>اقتصادي:</strong> مجاني ومفتوح المصدر، يبدأ من 10 أيام للتجهيز والتطبيق المبدئي ويتم
+                            تطويره وتخصيصه خلال فترة الاستخدام.</td>
+                        <td><strong>الحل المثالي (مقترح):</strong> يضمن الجودة والرقابة والسرية، وقابل للتطوير التدريجي.
+                        </td>
+                        <td style="color:#047857; font-weight:600;">ممتازة (قابل للتوسع تدريجياً)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- نظام Chatwoot والمميزات التي يوفرها -->
+        <h2>نظام Chatwoot والمميزات التي يوفرها</h2>
+        <p>
+            يُعد <strong>Chatwoot</strong> من أقوى المنصات مفتوحة المصدر في مجال إدارة علاقات العملاء (CRM) ومراكز
+            الدعم، وهو الخيار الأمثل الذي نقترحه لتلبية احتياجات الكلية. من أبرز مميزاته:
+        </p>
+        <ul class="features-list">
+            <li><strong>مجاني تماماً</strong> – لا يفرض أي رسوم ترخيص، مع إتاحة كود المصدر الكامل للتخصيص.</li>
+            <li><strong>دمج القنوات المتعددة</strong> – يدعم واتساب (عبر Meta API)، تليجرام، فيسبوك ماسنجر، البريد
+                الإلكتروني، ونماذج الويب.</li>
+            <li><strong>لوحة تحكم غنية وسهلة</strong> – تعمل عبر المتصفح وتطبيقات الهواتف، وتتيح إدارة المحادثات
+                والعلامات والملاحظات الداخلية.</li>
+            <li><strong>تحويل التذاكر بين الفرق</strong> – بضغطة زر، مع الاحتفاظ بجميع المرفقات والملاحظات.</li>
+            <li><strong>تقارير تحليلية مفصلة</strong> – عن أداء الفريق، متوسط وقت الرد، ورضا العملاء.</li>
+            <li><strong>واجهات APIs قوية</strong> – تسمح بالربط مع الأنظمة الأكاديمية الداخلية.</li>
+            <li><strong>أتمتة عبر البوتات المخصصة</strong> – لتخفيف العبء عن الموظفين مع الحفاظ على المرونة للتدخل
+                البشري.</li>
+        </ul>
+
+        <!-- ============================================================ -->
+        <!-- 4. مخطط رحلة الطالب -->
+        <h2 id="journey">مخطط رحلة قضية الطالب</h2>
+        <div class="journey-map">
+            <div class="intro">التسلسل المنطقي لمسار التذكرة من الطالب إلى الموظف عبر نظام Chatwoot</div>
+
+            <div class="timeline">
+                <!-- الخطوة 1 -->
+                <div class="timeline-item left">
+                    <div class="timeline-dot">١</div>
+                    <div class="timeline-content">
+                        <div class="stitle">دخول الطالب عبر قناة التواصل</div>
+                        <div class="sdesc">يرسل الطالب استفساره الأساسي من خلال تطبيق الواتساب المفضل لديه.</div>
+                    </div>
+                </div>
+                <div class="timeline-arrow"><span>▼</span></div>
+
+                <!-- الخطوة 2 -->
+                <div class="timeline-item right">
+                    <div class="timeline-dot">٢</div>
+                    <div class="timeline-content">
+                        <div class="stitle">التحقق وتصنيف البوت المبدئي</div>
+                        <div class="sdesc">يطلب البوت الرقم الجامعي لتوثيق السجلات ويعرض خيارات تحديد التخصص ونوع
+                            المشكلة.</div>
+                    </div>
+                </div>
+                <div class="timeline-arrow"><span>▼</span></div>
+
+                <!-- الخطوة 3 -->
+                <div class="timeline-item left">
+                    <div class="timeline-dot">٣</div>
+                    <div class="timeline-content">
+                        <div class="stitle">التوجيه الذكي المباشر (Zero Static)</div>
+                        <div class="sdesc">يتم تحويل المحادثة فوراً كـ Ticket بشرية حية إلى واجهة النظام دون تقديم ردود
+                            تلقائية.</div>
+                    </div>
+                </div>
+                <div class="timeline-arrow"><span>▼</span></div>
+
+                <!-- الخطوة 4 -->
+                <div class="timeline-item right">
+                    <div class="timeline-dot">٤</div>
+                    <div class="timeline-content">
+                        <div class="stitle">التخصيص والتعيين للموظف (Assignment)</div>
+                        <div class="sdesc">يتم إسناد التذكرة في صندوق الوارد إما تلقائياً لموظف معين أو يدوياً في
+                            الصندوق المشترك.</div>
+                    </div>
+                </div>
+                <div class="timeline-arrow"><span>▼</span></div>
+
+                <!-- الخطوة 5 -->
+                <div class="timeline-item left">
+                    <div class="timeline-dot">٥</div>
+                    <div class="timeline-content">
+                        <div class="stitle">استلام الموظف البشري والحل الفوري</div>
+                        <div class="sdesc">يستلم الموظف المختص القضية، ويقوم بالتواصل وحلها وطلب التحقق من الهوية عند
+                            الحاجة.</div>
+                    </div>
+                </div>
+                <div class="timeline-arrow"><span>▼</span></div>
+
+                <!-- الخطوة 6 -->
+                <div class="timeline-item right">
+                    <div class="timeline-dot">٦</div>
+                    <div class="timeline-content">
+                        <div class="stitle">إعادة التحويل المرن (عند الحاجة)</div>
+                        <div class="sdesc">إذا أخطأ الطالب في التصنيف، يوجه الموظف المحادثة بكامل مرفقاتها للعمادة
+                            المعنية بضغطة زر.</div>
+                    </div>
+                </div>
+                <div class="timeline-arrow"><span>▼</span></div>
+
+                <!-- الخطوة 7 -->
+                <div class="timeline-item left">
+                    <div class="timeline-dot">٧</div>
+                    <div class="timeline-content">
+                        <div class="stitle">حل المشكلة والإغلاق النهائي</div>
+                        <div class="sdesc">يصل إشعار تأكيد الحل للطالب على الواتساب، ويقوم الموظف بإغلاق القضية بنجاح.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ملاحظة الرقابة والمتابعة الإدارية ===== -->
+        <div class="supervision-note-outside">
+            <div class="head">
+                <span class="badge">ملاحظة إشرافية هامة</span>
+                <span>الرقابة والمتابعة الإدارية (Supervisor Oversight)</span>
+            </div>
+            <p>
+                لا تقع الرقابة كخطوة نهائية أو تالية في الرحلة، بل هي <strong>مظلة إشرافية مستمرة وموازية</strong> لكافة
+                الخطوات السابقة؛ حيث تمنح العمداء ورؤساء الأقسام صلاحية متابعة سرعة استجابة الموظفين، ورصد التذاكر
+                العالقة، وحل أي تأخير بشكل فوري وتصحيحي لحماية جودة الخدمة.
+            </p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 5. خطة العمل (مع مخطط Gantt المُحسَّن) -->
+        <h2 id="plan">خطة العمل الزمنية المقترحة (10 أيام)</h2>
+        <p>
+            لضمان معالجة ضغط الرسائل وتنصيب النظام بأسرع وقت ممكن، تم تصميم خطة تنفيذية مكثفة مقترحة مدتها <strong>10
+                أيام</strong> خالية تماماً من هدر الوقت في بناء إجابات تلقائية ثابتة:
+        </p>
+
+        <!-- ===== مخطط Gantt البصري المُحسَّن ===== -->
+        <div class="gantt-wrapper">
+            <div class="gantt-grid">
+                <!-- صف الأيام -->
+                <div class="gantt-label" style="font-weight:400; color:#64748b; font-size:12px;">اليوم</div>
+                <div class="gantt-header-day">١</div>
+                <div class="gantt-header-day">٢</div>
+                <div class="gantt-header-day">٣</div>
+                <div class="gantt-header-day">٤</div>
+                <div class="gantt-header-day">٥</div>
+                <div class="gantt-header-day">٦</div>
+                <div class="gantt-header-day">٧</div>
+                <div class="gantt-header-day">٨</div>
+                <div class="gantt-header-day">٩</div>
+                <div class="gantt-header-day">١٠</div>
+
+                <!-- المرحلة الأولى (أيام 1-3) -->
+                <div class="gantt-label">
+                    <span class="phase-num">١</span> التجهيز والبناء
+                </div>
+                <!-- اليوم 1: تثبيت Chatwoot + تهيئة البيئة -->
+                <div class="gantt-cell phase1" style="grid-column: span 3;">تثبيت Chatwoot وتهيئة البيئة</div>
+                <!-- اليوم 2: (تابع) ولكننا وضعنا span 2 فسيأخذ اليومين 1 و2 -->
+                <!-- اليوم 3: ربط واتساب API -->
+                <div class="gantt-cell phase1" style="grid-column: span 1;">ربط واتساب API</div>
+                <!-- باقي الأيام فارغة -->
+                <div class="gantt-cell empty"></div>
+                <div class="gantt-cell empty"></div>
+                <div class="gantt-cell empty"></div>
+                <div class="gantt-cell empty"></div>
+                <div class="gantt-cell empty"></div>
+                <div class="gantt-cell empty"></div>
+
+                <!-- المرحلة الثانية (أيام 4-7) -->
+                <div class="gantt-label">
+                    <span class="phase-num">٢</span> الهيكلة والتخصيص
+                </div>
+                <div class="gantt-cell empty"></div>
+                <div class="gantt-cell empty"></div>
+                <div class="gantt-cell empty"></div>
+                <div class="gantt-cell empty"></div>
+                <!-- اليوم 4-5: هيكلة الأقسام وعزل الصلاحيات -->
+                <div class="gantt-cell phase2" style="grid-column: span 1;">هيكلة 10 أقسام وعزل الصلاحيات</div>
+                <!-- اليوم 6: إنشاء حسابات الموظفين -->
+                <div class="gantt-cell phase2" style="grid-column: span 1;">إنشاء حسابات الموظفين</div>
+                <!-- اليوم 7: برمجة شجرة القرار -->
+                <div class="gantt-cell phase2" style="grid-column: span 1;">برمجة شجرة القرار</div>
+                <!-- باقي الأيام فارغة -->
+                <div class="gantt-cell empty"></div>
+                <div class="gantt-cell empty"></div>
+                <div class="gantt-cell empty"></div>
+
+                <!-- المرحلة الثالثة (أيام 8-10) -->
+                <div class="gantt-label">
+                    <span class="phase-num">٣</span> الفحص والتشغيل
+                </div>
+                <div class="gantt-cell empty"></div>
+                <div class="gantt-cell empty"></div>
+                <div class="gantt-cell empty"></div>
+                <div class="gantt-cell empty"></div>
+                <div class="gantt-cell empty"></div>
+                <div class="gantt-cell empty"></div>
+                <div class="gantt-cell empty"></div>
+                <!-- اليوم 8-9: محاكاة واختبار شامل -->
+                <div class="gantt-cell phase3" style="grid-column: span 2;">محاكاة دخول القضايا واختبار شامل</div>
+                <!-- اليوم 10: التحقق النهائي والإطلاق -->
+                <div class="gantt-cell phase3" style="grid-column: span 1;">التحقق النهائي والإطلاق</div>
+                <!-- باقي الأيام فارغة -->
+            </div>
+
+            <!-- وسيلة الإيضاح -->
+            <div class="gantt-legend">
+                <span><span class="swatch green"></span> المرحلة الأولى (أيام ١-٣)</span>
+                <span><span class="swatch gray"></span> المرحلة الثانية (أيام ٤-٧)</span>
+                <span><span class="swatch green"></span> المرحلة الثالثة (أيام ٨-١٠)</span>
+                <span style="color:#94a3b8; font-weight:400;">▸ المربعات الفارغة = أيام غير مخصصة للمرحلة</span>
+            </div>
+        </div>
+
+        <!-- النقاط التوضيحية الموجزة أسفل المخطط -->
+        <ul style="margin-top:10px;">
+            <li><strong>المرحلة الأولى (الأيام 1-3):</strong> اليومان 1-2: تثبيت Chatwoot وتهيئة البيئة (استضافة، قواعد
+                بيانات) – اليوم 3: ربط واجهة Meta WhatsApp API.</li>
+            <li><strong>المرحلة الثانية (الأيام 4-7):</strong> اليومان 4-5: هيكلة الأقسام وعزل الصلاحيات – اليوم 6:
+                إنشاء حسابات الموظفين يدوياً – اليوم 7: برمجة شجرة القرار لطلب الرقم الجامعي وتصنيف القضايا.</li>
+            <li><strong>المرحلة الثالثة (الأيام 8-10):</strong> اليومان 8-9: محاكاة شاملة لدخول القضايا واختبار إعادة
+                التحويل – اليوم 10: التحقق النهائي من لوحة المراقبة والإطلاق الرسمي.</li>
+        </ul>
+
+        <div class="note-block">
+            <strong>ملاحظة هامة حول النطاق:</strong> خطة الـ 10 أيام المقترحة لإطلاق النظام كإصدار أول عاجل تقتصر
+            بالكامل على ربط وتوجيه قنوات الواتساب، ولا تشمل الربط من خلال التليجرام والويب في هذه المرحلة.
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 6. التقديرات المالية -->
+        <h2 id="cost">التقديرات المالية والتقنية للمشروع</h2>
+        <ul>
+            <li><strong>تكلفة النظام والترخيص:</strong> نظام Chatwoot مجاني بالكامل لكونه مفتوح المصدر، دون أي قيود على
+                عدد الموظفين أو الأقسام.</li>
+            <li><strong>تكاليف الاستضافة والسيرفر:</strong> استضافة سحابية خاصة (VPS) متوسطة المواصفات بتكلفة تشغيلية
+                منخفضة جداً.</li>
+            <li><strong>تكاليف واجهات الواتساب (Meta WhatsApp API):</strong> تخضع لسياسة "نافذة الـ 24 ساعة":
+                <ul>
+                    <li><em>الرسائل داخل النافذة:</em> تكلفة شبه مجانية (~1 دولار لكل 1,000 رسالة).</li>
+                    <li><em>التواصل خارج النافذة:</em> يُحتسب كقالب مراسلة جديد، بتكلفة ~<strong>5 دولار لكل 1,000
+                            رسالة</strong>.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- ============================================================ -->
+        <!-- 7. حوكمة النظام والدروس المستفادة -->
+        <h2 id="governance">المميزات الأساسية واستراتيجية النظام</h2>
+        <h3>المميزات الأساسية الواجب توفرها في النظام الحالي</h3>
+
+        <p>
+            بالنظر إلى حجم الضغط اليومي وحساسية بيانات الطلبة، يجب أن يتضمن نظام الدعم الفني الحالي مجموعة من المميزات
+            الجوهرية التي تضمن كفاءة العمل واستمراريته، وهي:
+        </p>
+        <ol>
+            <li>
+                <strong>التوحيد الكامل لقنوات التواصل:</strong> جمع كافة الاستفسارات الواردة من واتساب، تليجرام، والبريد
+                الإلكتروني في واجهة واحدة لتجنب الفوضى وضياع الرسائل.
+            </li>
+            <li>
+                <strong>التوزيع الذكي للتذاكر (Smart Routing):</strong> يكفل وصول كل قضية إلى الموظف المختص بناءً على
+                التصنيف الموضوعي، مع إمكانية إعادة التوجيه بمرونة بين الأقسام.
+            </li>
+            <li>
+                <strong>لوحة تحكم إدارية شاملة:</strong> تتيح للمشرفين مراقبة أوقات الاستجابة، وقياس أداء الفرق، ورصد
+                التذاكر المتأخرة لحظة بلحظة.
+            </li>
+            <li>
+                <strong>نظام صلاحيات متقدم:</strong> يتيح للإدارة والمشرفين صلاحيات متقدمة لمراقبة أداء أعضاء الفريق،
+                ومتابعة جودة الردود المقدمة للطلبة، وقياس مؤشرات الأداء الرئيسية (KPIs) مثل متوسط زمن الاستجابة ومعدل
+                إنجاز التذاكر، بما يضمن أعلى مستويات الجودة والشفافية التشغيلية.
+
+            </li>
+            <li>
+                <strong>قابلية التوسع والتخصيص:</strong> لتتكيف المنصة مع احتياجات الكلية المتزايدة في المستقبل.
+            </li>
+        </ol>
+
+        <!-- الصورة المضافة أسفل الفقرة -->
+        <div class="feature-image">
+            <img src="chatwoot-apps.png" alt="واجهة نظام Chatwoot - مكان اختيار التطبيقات للربط بها" loading="lazy" />
+            <p class="img-caption">الشكل ٢: شاشة إعدادات قنوات التواصل في Chatwoot – إمكانية ربط واتساب، تليجرام، فيسبوك
+                وغيرها</p>
+        </div>
+
+        <h3>استراتيجية نظام Chatwoot</h3>
+        <p>تطبيقاً لهذه الرؤية، نعتمد الاستراتيجية المرنة التالية:</p>
+        <ol>
+            <li><strong>التشغيل المانيوال الفوري (Manual-First):</strong> لن ننتظر الربط البرمجي المعقد مع قواعد
+                البيانات، بل سنبني حسابات الموظفين يدوياً وتنصيب النظام فوراً لمعالجة ضغط الرسائل.</li>
+            <li><strong>الرقابة الصارمة وحماية الخصوصية:</strong> تطبيق عزل تام بين الصناديق؛ بحيث لا تتدخل إدارة في
+                قضايا إدارات أخرى، مع منح المشرفين صلاحيات رقابة لحماية حقوق الطالب وجودة الخدمة.</li>
+        </ol>
+
+        <!-- ===== التذييل ===== -->
+        <div class="footer">
+            <p>تم إعداد هذا التقرير بعناية فنية وإدارية عالية من قبل م. محمود الشيخ خليل</p>
+            <p>غزة | 31 أغسطس 2026</p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
